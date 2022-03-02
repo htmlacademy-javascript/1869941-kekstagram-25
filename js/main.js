@@ -62,7 +62,7 @@ const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements
 
 const getComment = () => ({
   id: Math.floor(Math.random().toFixed(4) * 10000),
-  avatar: `img/avatar-${getRandomNumber(1, 6)}svg`,
+  avatar: `img/avatar-${getRandomNumber(1, 6)}.svg`,
   message: getRandomArrayElement(MESSAGES),
   name: getRandomArrayElement(NAMES)
 });
