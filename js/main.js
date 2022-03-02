@@ -56,37 +56,27 @@ const NAMES = [
   'Григорий',
 ];
 
-
 const POSTS_COUNT = 25;
 
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
+
+const getComment = () => ({
+  id: Math.floor(Math.random().toFixed(4) * 10000),
+  avatar: `img/avatar-${getRandomNumber(1, 6)}svg`,
+  message: getRandomArrayElement(MESSAGES),
+  name: getRandomArrayElement(NAMES)
+});
+
+const getComments = () => Array.from({ length: getRandomNumber(1, 3) }, getComment);
 
 const createPost = (index) => ({
   id: index + 1,
   url: `photos/${getRandomNumber(1, 25)}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomNumber(15, 200),
-  comments: [
-    {
-      id: Math.floor(Math.random().toFixed(4) * 10000),
-      avatar: `img/avatar-${getRandomNumber(1, 6)}svg`,
-      message: getRandomArrayElement(MESSAGES),
-      name: getRandomArrayElement(NAMES)
-    },
-    {
-      id: Math.floor(Math.random().toFixed(4) * 10000),
-      avatar: `img/avatar-${getRandomNumber(1, 6)}svg`,
-      message: getRandomArrayElement(MESSAGES),
-      name: getRandomArrayElement(NAMES)
-    },
-    {
-      id: Math.floor(Math.random().toFixed(4) * 10000),
-      avatar: `img/avatar-${getRandomNumber(1, 6)}svg`,
-      message: getRandomArrayElement(MESSAGES),
-      name: getRandomArrayElement(NAMES)
-    },
-  ],
+  comments: getComments(),
 });
+
 
 const userPost = Array.from({ length: POSTS_COUNT }, (item, index) => createPost(index));
 // eslint-disable-next-line no-console
