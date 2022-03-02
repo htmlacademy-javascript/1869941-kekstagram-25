@@ -11,6 +11,7 @@ const getRandomNumber = (min, max) => {
 const checkStringLength = (string, length) => string <= length;
 
 checkStringLength();
+
 const DESCRIPTIONS = [
   '#нетвойне',
   'Кекс на чиле',
@@ -65,12 +66,26 @@ const createPost = (index) => ({
   url: `photos/${getRandomNumber(1, 25)}.jpg`,
   description: getRandomArrayElement(DESCRIPTIONS),
   likes: getRandomNumber(15, 200),
-  comments: {
-    id: index + 1,
-    avatar: `img/avatar-${getRandomNumber(1, 6)}svg`,
-    message: getRandomArrayElement(MESSAGES),
-    name: getRandomArrayElement(NAMES),
-  },
+  comments: [
+    {
+      id: Math.floor(Math.random().toFixed(4) * 10000),
+      avatar: `img/avatar-${getRandomNumber(1, 6)}svg`,
+      message: getRandomArrayElement(MESSAGES),
+      name: getRandomArrayElement(NAMES)
+    },
+    {
+      id: Math.floor(Math.random().toFixed(4) * 10000),
+      avatar: `img/avatar-${getRandomNumber(1, 6)}svg`,
+      message: getRandomArrayElement(MESSAGES),
+      name: getRandomArrayElement(NAMES)
+    },
+    {
+      id: Math.floor(Math.random().toFixed(4) * 10000),
+      avatar: `img/avatar-${getRandomNumber(1, 6)}svg`,
+      message: getRandomArrayElement(MESSAGES),
+      name: getRandomArrayElement(NAMES)
+    },
+  ],
 });
 
 const userPost = Array.from({ length: POSTS_COUNT }, (item, index) => createPost(index));
