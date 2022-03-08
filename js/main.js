@@ -1,4 +1,3 @@
-import { getRandomNumber, getRandomArrayElement, getComments, createPost, userPost } from './data.js';
-import { checkStringLength } from './util.js';
+import { userPost } from './data.js';
 // eslint-disable-next-line no-console
 console.log(userPost);
