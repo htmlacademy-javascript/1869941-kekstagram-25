@@ -1,3 +1,5 @@
+import { getRandomNumber } from './util.js';
+
 const DESCRIPTIONS = [
   '#нетвойне',
   'Кекс на чиле',
@@ -42,16 +44,6 @@ const NAMES = [
   'Григорий',
 ];
 
-const getRandomNumber = (min, max) => {
-  if (min < 0 || max < 0) {
-    return -1;
-  }
-  if (min > max) {
-    [min, max] = [max, min];
-  }
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
 const getRandomArrayElement = (elements) => elements[getRandomNumber(0, elements.length - 1)];
 
 const getComment = () => ({
@@ -71,7 +63,7 @@ const createPost = (index) => ({
   comments: getComments(),
 });
 
-const POSTS_COUNT = 25;
+const POSTS_COUNT = 26;
 
 const userPost = Array.from({ length: POSTS_COUNT }, (item, index) => createPost(index));
 
