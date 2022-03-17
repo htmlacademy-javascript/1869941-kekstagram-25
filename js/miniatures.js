@@ -1,3 +1,5 @@
+import { fullScreenMode } from './full-screen.js';
+
 const usersPictureContainer = document.querySelector('.pictures');
 const usersPictureTemplate = document.querySelector('#picture').content;
 
@@ -8,6 +10,10 @@ const renderPicture = (picture) => {
   pictureElement.querySelector('.picture__img').src = picture.url;
   pictureElement.querySelector('.picture__likes').textContent = picture.likes;
   pictureElement.querySelector('.picture__comments').textContent = picture.comments.length;
+
+  addEventListener('click', () => {
+    fullScreenMode();
+  });
 
   return pictureElement;
 };
