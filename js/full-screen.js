@@ -15,9 +15,16 @@ const commentsLoader = documentBody.querySelector('.comments-loader');
 
 
 const usersCommentContainer = documentBody.querySelector('.social__comments');
-const usersCommentTemplate = documentBody.querySelector('#social-comment').content.querySelector('.social__comment');
+const usersCommentTemplate = documentBody.querySelector('#social-comment')
+  .content.querySelector('.social__comment');
 
 const commentFragment = document.createDocumentFragment();
+
+const removeComments = () => {
+  documentBody.querySelectorAll('.social__comment').forEach((elem) => {
+    elem.remove();
+  });
+};
 
 const closeFullScreenPicture = () => {
   fullScreenOpen.classList.add('hidden');
@@ -26,10 +33,6 @@ const closeFullScreenPicture = () => {
   commentsLoader.classList.remove('hidden');
 
   documentBody.classList.remove('modal-open');
-
-  document.querySelectorAll('.social__comment').forEach((elem) => {
-    elem.remove();
-  });
 };
 
 const onCloseClick = () => {
@@ -69,6 +72,8 @@ const fullScreenMode = (picture) => {
   likesCount.textContent = picture.likes;
   pictureDescription.textContent = picture.description;
 
+  removeComments();
+
   fullScreenOpen.classList.remove('hidden');
 
   commentCount.classList.add('hidden');
@@ -79,7 +84,6 @@ const fullScreenMode = (picture) => {
   fullScreenClose.addEventListener('click', onCloseClick);
 
   documentBody.addEventListener('keydown', onEscKeyDown);
-
 };
 
 export { fullScreenMode, createComments };

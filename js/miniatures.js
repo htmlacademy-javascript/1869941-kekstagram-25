@@ -1,6 +1,4 @@
-import { fullScreenMode } from './full-screen.js';
-import { getComments } from './data.js';
-import { createComments } from './full-screen.js';
+import { fullScreenMode, createComments } from './full-screen.js';
 
 const usersPictureContainer = document.querySelector('.pictures');
 const usersPictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -18,6 +16,8 @@ const renderPicture = (picture) => {
     evt.preventDefault();
 
     fullScreenMode(picture);
+
+    createComments(picture.comments);
   });
 
   return pictureElement;
@@ -27,8 +27,6 @@ const renderPictures = (pictures) => {
   pictures.forEach((picture) => {
     pictureFragment.append(renderPicture(picture));
   });
-
-  createComments(getComments());
 
   usersPictureContainer.append(pictureFragment);
 };
