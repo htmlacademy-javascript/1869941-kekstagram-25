@@ -62,9 +62,8 @@ const createPost = (index) => ({
   likes: getRandomNumber(15, 200),
   comments: getComments(),
 });
-
-const POSTS_COUNT = 26;
+const POSTS_COUNT = 25;
 
 const userPost = Array.from({ length: POSTS_COUNT }, (item, index) => createPost(index));
 
-export { userPost };
+export { userPost, getComments };
