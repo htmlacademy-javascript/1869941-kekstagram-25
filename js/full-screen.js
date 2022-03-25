@@ -41,8 +41,9 @@ const onCloseClick = () => {
   fullScreenClose.removeEventListener('click', onCloseClick);
 };
 
-const onEscKeyDown = (esc) => {
-  if (escKey(esc)) {
+const onEscKeyDown = (evt) => {
+  evt.preventDefault();
+  if (escKey(evt)) {
     closeFullScreenPicture();
 
     documentBody.removeEventListener('keydown', onEscKeyDown);

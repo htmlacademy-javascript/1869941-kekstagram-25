@@ -10,6 +10,6 @@ const getRandomNumber = (min, max) => {
 
 const checkStringLength = (string, length) => string <= length;
 
-const escKey = (esc) => esc.key === 'Escape';
+const escKey = (evt) => evt.key === 'Escape';
 
 export { getRandomNumber, checkStringLength, escKey };
