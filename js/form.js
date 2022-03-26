@@ -1,4 +1,6 @@
 import { escKey } from './util.js';
+import './validation.js';
+
 
 const documentBody = document.querySelector('body');
 
