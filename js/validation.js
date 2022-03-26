@@ -36,28 +36,27 @@ const hashtagsHandler = (value) => {
   const rules = [
     {
       check: inputArray.some((item, num, arr) => arr.includes(item, num + 1)),
-      error: 'Хеш-теги не должны повторться',
+      error: 'Хэш-теги не должны повторться',
     },
     {
       check: inputArray.some((item) => item.indexOf('#', 1) >= 1),
-      error: 'Хеш-теги разделються пробелами',
+      error: 'Хэш-теги разделються пробелами',
     },
     {
       check: inputArray.some((item) => item.length > MAX_SYMBOL),
-      error: `Максимальная длина одного хеш-тега ${MAX_SYMBOL} символов, включая решётку`,
+      error: `Максимальная длина одного хэш-тега ${MAX_SYMBOL} символов, включая решётку`,
     },
-
     {
       check: inputArray.length > MAX_HASHTAGS_AMOUNT,
-      error: `Нельзя указать больше ${MAX_HASHTAGS_AMOUNT} хеш-тегов`,
+      error: `Нельзя указать больше ${MAX_HASHTAGS_AMOUNT} хэш-тегов`,
     },
     {
       check: inputArray.some((item) => item[0] !== '#'),
-      error: 'Хеш-тег должен начинаться с символа #',
+      error: 'Хэш-тег должен начинаться с символа #',
     },
     {
       check: inputArray.some((item) => !/^#[a-zа-яё0-9]{1,19}$/i.test(item)),
-      error: 'Хеш-тег содержит недопустимые символы, либо неверное количество символов',
+      error: 'Хэш-тег содержит недопустимые символы, либо не может состоять из одной решётки',
     },
   ];
   return rules.every((rule) => {
