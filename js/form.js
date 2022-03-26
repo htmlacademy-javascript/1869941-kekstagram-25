@@ -10,7 +10,7 @@ const closeForm = () => {
   uploadOverlay.classList.add('hidden');
   documentBody.classList.remove('modal-open');
 
-  uploadInput.textContent = '';
+  uploadInput.value = '';
 };
 
 const onCloseFormButton = () => {

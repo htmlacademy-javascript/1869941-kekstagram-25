@@ -59,11 +59,15 @@ const hashtagsHandler = (value) => {
       error: 'Хэш-тег содержит недопустимые символы, либо не может состоять из одной решётки',
     },
   ];
+
   return rules.every((rule) => {
+
     const isInvalid = rule.check;
+
     if (isInvalid) {
       errorMessage = rule.error;
     }
+
     return !isInvalid;
   });
 };
@@ -75,5 +79,3 @@ const onHashtagsInput = () => {
 };
 
 inputHashtag.addEventListener('input', onHashtagsInput);
-
-export { inputHashtag };
