@@ -9,10 +9,9 @@ const fullScreenClose = fullScreenOpen.querySelector('.big-picture__cancel');
 const likesCount = documentBody.querySelector('.likes-count');
 
 const pictureDescription = documentBody.querySelector('.social__caption');
-const commentCount = documentBody.querySelector('.social__comment-count');
 
 const commentsLoader = documentBody.querySelector('.comments-loader');
-
+const commentCount = documentBody.querySelector('.social__comment-count');
 
 const usersCommentContainer = documentBody.querySelector('.social__comments');
 const usersCommentTemplate = documentBody.querySelector('#social-comment')
@@ -35,18 +34,19 @@ const closeFullScreenPicture = () => {
   documentBody.classList.remove('modal-open');
 };
 
-const onCloseClick = () => {
-  closeFullScreenPicture();
-
-  fullScreenClose.removeEventListener('click', onCloseClick);
-};
-
 const onEscKeyDown = (evt) => {
   if (escKey(evt)) {
     closeFullScreenPicture();
 
     documentBody.removeEventListener('keydown', onEscKeyDown);
   }
+};
+
+const onCloseClick = () => {
+  closeFullScreenPicture();
+
+  fullScreenClose.removeEventListener('click', onCloseClick);
+  documentBody.removeEventListener('keydown', onEscKeyDown);
 };
 
 const createComment = (comment) => {
@@ -82,7 +82,6 @@ const fullScreenMode = (picture) => {
   documentBody.classList.add('modal-open');
 
   fullScreenClose.addEventListener('click', onCloseClick);
-
   documentBody.addEventListener('keydown', onEscKeyDown);
 };
 
