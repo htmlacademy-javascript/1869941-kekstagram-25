@@ -12,7 +12,7 @@ const pristine = new Pristine(formUpload, {
   errorTextClass: 'img-upload__error',
 });
 
-const inputHashtag = document.querySelector('.text__hashtags');
+const inputHashtag = formUpload.querySelector('.text__hashtags');
 
 let errorMessage = '';
 
@@ -35,37 +35,37 @@ const hashtagsHandler = (value) => {
 
   const rules = [
     {
-      check: inputArray.some((item) => !/^#[a-zа-яё0-9]{1,19}$/i.test(item)),
-      error: 'Хеш-тег содержит недопустимые символы, либо неверное количество символов',
-    },
-    {
-      check: inputArray.some((item) => item[0] !== '#'),
-      error: 'Хеш-тег должен начинаться с символа #',
+      check: inputArray.some((item, num, arr) => arr.includes(item, num + 1)),
+      error: 'Хеш-теги не должны повторться',
     },
     {
       check: inputArray.some((item) => item.indexOf('#', 1) >= 1),
       error: 'Хеш-теги разделються пробелами',
     },
     {
-      check: inputArray.some((item, num, arr) => arr.includes(item, num + 1)),
-      error: 'Хеш-теги не должны повторться',
-    },
-    {
       check: inputArray.some((item) => item.length > MAX_SYMBOL),
       error: `Максимальная длина одного хеш-тега ${MAX_SYMBOL} символов, включая решётку`,
     },
+
     {
       check: inputArray.length > MAX_HASHTAGS_AMOUNT,
       error: `Нельзя указать больше ${MAX_HASHTAGS_AMOUNT} хеш-тегов`,
     },
+    {
+      check: inputArray.some((item) => item[0] !== '#'),
+      error: 'Хеш-тег должен начинаться с символа #',
+    },
+    {
+      check: inputArray.some((item) => !/^#[a-zа-яё0-9]{1,19}$/i.test(item)),
+      error: 'Хеш-тег содержит недопустимые символы, либо неверное количество символов',
+    },
   ];
-
   return rules.every((rule) => {
     const isInvalid = rule.check;
     if (isInvalid) {
       errorMessage = rule.error;
     }
-    return isInvalid;
+    return !isInvalid;
   });
 };
 

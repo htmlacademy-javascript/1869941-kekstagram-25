@@ -1,4 +1,4 @@
-// import { escKey } from './util.js';
+import { escKey } from './util.js';
 
 const documentBody = document.querySelector('body');
 
@@ -17,19 +17,18 @@ const closeForm = () => {
   uploadInput.textContent = '';
 };
 
-// const onEscKeyDown = (evt) => {
-//   evt.preventDefault();
-//   if (escKey(evt)) {
-//     closeForm();
+const onEscKeyDown = (evt) => {
+  if (escKey(evt) && !evt.target.classList.contains('text__hashtags') && !evt.target.classList.contains('text__description')) {
+    closeForm();
 
-//     documentBody.removeEventListener('keydown', onEscKeyDown);
-//   }
-// };
+    documentBody.removeEventListener('keydown', onEscKeyDown);
+  }
+};
 
 const onUploadFileClick = () => {
   openForm();
 
-  // documentBody.addEventListener('keydown', onEscKeyDown);
+  documentBody.addEventListener('keydown', onEscKeyDown);
 };
 
 const onCloseFormButton = () => {
@@ -39,4 +38,3 @@ const onCloseFormButton = () => {
 uploadInput.addEventListener('change', onUploadFileClick);
 
 closeFormButton.addEventListener('click', onCloseFormButton);
-

@@ -42,7 +42,6 @@ const onCloseClick = () => {
 };
 
 const onEscKeyDown = (evt) => {
-  evt.preventDefault();
   if (escKey(evt)) {
     closeFullScreenPicture();
 
