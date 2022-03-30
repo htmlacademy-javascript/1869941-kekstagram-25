@@ -1,5 +1,9 @@
 import { escKey } from './util.js';
 
+const COMMENTS_COUNT = 5;
+
+let currentComments = [];
+
 const documentBody = document.querySelector('body');
 
 const fullScreenOpen = documentBody.querySelector('.big-picture');
@@ -10,8 +14,9 @@ const likesCount = documentBody.querySelector('.likes-count');
 
 const pictureDescription = documentBody.querySelector('.social__caption');
 
-const commentsLoader = documentBody.querySelector('.comments-loader');
-const commentCount = documentBody.querySelector('.social__comment-count');
+const loadMoreButton = documentBody.querySelector('.social__comments-loader');
+
+const commentsCounter = documentBody.querySelector('.social__comment-count');
 
 const usersCommentContainer = documentBody.querySelector('.social__comments');
 const usersCommentTemplate = documentBody.querySelector('#social-comment')
@@ -27,10 +32,6 @@ const removeComments = () => {
 
 const closeFullScreenPicture = () => {
   fullScreenOpen.classList.add('hidden');
-
-  commentCount.classList.remove('hidden');
-  commentsLoader.classList.remove('hidden');
-
   documentBody.classList.remove('modal-open');
 };
 
@@ -74,10 +75,9 @@ const fullScreenMode = (picture) => {
 
   removeComments();
 
-  fullScreenOpen.classList.remove('hidden');
+  createComments(picture.comments.slice(0, COMMENTS_COUNT));
 
-  commentCount.classList.add('hidden');
-  commentsLoader.classList.add('hidden');
+  fullScreenOpen.classList.remove('hidden');
 
   documentBody.classList.add('modal-open');
 
@@ -85,4 +85,4 @@ const fullScreenMode = (picture) => {
   documentBody.addEventListener('keydown', onEscKeyDown);
 };
 
-export { fullScreenMode, createComments };
+export { fullScreenMode };

@@ -1,4 +1,4 @@
-import { fullScreenMode, createComments } from './full-screen.js';
+import { fullScreenMode } from './full-screen.js';
 import './form.js';
 
 const usersPictureContainer = document.querySelector('.pictures');
@@ -18,7 +18,6 @@ const renderPicture = (picture) => {
 
     fullScreenMode(picture);
 
-    createComments(picture.comments);
   });
 
   return pictureElement;
