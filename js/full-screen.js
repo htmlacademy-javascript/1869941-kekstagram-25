@@ -91,6 +91,7 @@ const onLoadMoreCommentsClick = () => {
   }
 };
 
+
 const fullScreenMode = (picture) => {
   fullScreenPicture.src = picture.url;
   likesCount.textContent = picture.likes;
