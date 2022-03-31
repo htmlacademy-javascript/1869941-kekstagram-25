@@ -53,7 +53,7 @@ const getComment = () => ({
   name: getRandomArrayElement(NAMES)
 });
 
-const getComments = () => Array.from({ length: getRandomNumber(1, 3) }, getComment);
+const getComments = () => Array.from({ length: getRandomNumber(1, 17) }, getComment);
 
 const createPost = (index) => ({
   id: index + 1,
