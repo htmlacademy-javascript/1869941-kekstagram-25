@@ -1,5 +1,7 @@
 import { escKey } from './util.js';
 import './validation.js';
+import { resetScaleModifier } from './scale.js';
+import { resetEffectSettings } from './nouislider.js';
 
 
 const documentBody = document.querySelector('body');
@@ -17,6 +19,7 @@ const closeForm = () => {
 
 const onCloseFormButton = () => {
   closeForm();
+  resetScaleModifier();
 };
 
 const onEscKeyDown = (evt) => {
@@ -37,6 +40,8 @@ const onUploadFileClick = () => {
   closeFormButton.addEventListener('click', onCloseFormButton);
 
   documentBody.addEventListener('keydown', onEscKeyDown);
+  resetEffectSettings();
+
 };
 
 uploadInput.addEventListener('change', onUploadFileClick);
