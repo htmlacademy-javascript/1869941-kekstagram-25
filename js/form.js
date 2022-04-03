@@ -17,6 +17,13 @@ const closeForm = () => {
   uploadInput.value = '';
 };
 
+const onOutsideClick = (evt) => {
+  if (evt.target.className === 'img-upload__overlay') {
+    closeForm();
+  }
+  documentBody.removeEventListener('click', onOutsideClick);
+};
+
 const onCloseFormButton = () => {
   closeForm();
   resetScaleModifier();
@@ -42,6 +49,7 @@ const onUploadFileClick = () => {
   documentBody.addEventListener('keydown', onEscKeyDown);
   resetEffectSettings();
 
+  documentBody.addEventListener('click', onOutsideClick);
 };
 
 uploadInput.addEventListener('change', onUploadFileClick);
