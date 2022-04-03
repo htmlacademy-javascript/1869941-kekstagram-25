@@ -99,7 +99,6 @@ const onLoadMoreCommentsClick = () => {
   }
 };
 
-
 const fullScreenMode = (picture) => {
   fullScreenPicture.src = picture.url;
   likesCount.textContent = picture.likes;
@@ -120,7 +119,6 @@ const fullScreenMode = (picture) => {
     loadMoreButton.removeEventListener('click', onLoadMoreCommentsClick);
   }
 
-
   fullScreenOpen.classList.remove('hidden');
 
   documentBody.classList.add('modal-open');
@@ -128,7 +126,6 @@ const fullScreenMode = (picture) => {
   fullScreenClose.addEventListener('click', onCloseClick);
   documentBody.addEventListener('keydown', onEscKeyDown);
   documentBody.addEventListener('click', onOutsideClick);
-
 };
 
 export { fullScreenMode };
