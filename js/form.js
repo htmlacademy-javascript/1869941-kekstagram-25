@@ -21,8 +21,6 @@ const onOutsideClick = (evt) => {
   if (evt.target.className === 'img-upload__overlay') {
     closeForm();
   }
-
-  documentBody.removeEventListener('click', onOutsideClick);
 };
 
 const onCloseFormButton = () => {
