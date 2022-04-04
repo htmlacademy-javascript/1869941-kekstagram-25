@@ -14,6 +14,84 @@ noUiSlider.create(sliderElement, {
   connect: 'lower',
 });
 
+const effects = {
+  'chrome': {
+    RANGE: {
+      MIN: 0,
+      MAX: 1
+    },
+    START: 1,
+    STEP: 0.1,
+    EFFECT: 'grayscale',
+    DISPLAY: 'block',
+    UNIT: '',
+  },
+  'sepia': {
+    RANGE: {
+      MIN: 0,
+      MAX: 1
+    },
+    START: 1,
+    STEP: 0.1,
+    EFFECT: 'sepia',
+    DISPLAY: 'block',
+    UNIT: '',
+  },
+  'marvin': {
+    RANGE: {
+      MIN: 0,
+      MAX: 100,
+    },
+    START: 100,
+    STEP: 1,
+    EFFECT: 'invert',
+    DISPLAY: 'block',
+    UNIT: '%',
+  },
+  'phobos': {
+    RANGE: {
+      MIN: 0,
+      MAX: 3,
+    },
+    START: 3,
+    STEP: 0.1,
+    EFFECT: 'blur',
+    DISPLAY: 'block',
+    UNIT: 'px',
+  },
+  'heat': {
+    RANGE: {
+      MIN: 1,
+      MAX: 3,
+    },
+    START: 3,
+    STEP: 0.1,
+    EFFECT: 'brightness',
+    DISPLAY: 'block',
+    UNIT: '',
+  },
+};
+
+const updateSliderOptions = ({ RANGE: { MIN, MAX }, START, STEP }) => {
+  sliderElement.noUiSlider.updateOptions({
+    range: {
+      min: MIN,
+      max: MAX,
+    },
+    start: START,
+    step: STEP,
+  });
+};
+
+const updateSliderEffects = (filters) => {
+  sliderElement.noUiSlider.on('update', () => {
+    effectLevelValue.value = sliderElement.noUiSlider.get();
+    picturePreview.style.filter = `${effects[filters].EFFECT}(${effectLevelValue.value}${effects[filters].UNIT})`;
+    picturePreview.classList.add(`effects__preview--${filters}`);
+    sliderContainer.style.display = `${effects[filters].DISPLAY}`;
+  });
+};
+
 const resetEffectSettings = () => {
   picturePreview.classList = '';
   picturePreview.style.filter = '';
@@ -22,93 +100,35 @@ const resetEffectSettings = () => {
 };
 
 effectsList.addEventListener('change', (evt) => {
-  if (evt.target && evt.target.value === 'none') {
+  const currentEffect = evt.target.value;
+
+  if (currentEffect === 'none') {
     resetEffectSettings();
   }
 
-  if (evt.target && evt.target.value === 'chrome') {
-    sliderElement.noUiSlider.updateOptions({
-      range: {
-        min: 0,
-        max: 1
-      },
-      start: 1,
-      step: 0.1
-    });
-    sliderElement.noUiSlider.on('update', () => {
-      effectLevelValue.value = sliderElement.noUiSlider.get();
-      picturePreview.style.filter = `grayscale(${effectLevelValue.value})`;
-      picturePreview.classList.add('effects__preview--chrome');
-      sliderContainer.style.display = 'block';
-    });
+  if (currentEffect === 'chrome') {
+    updateSliderOptions(effects.chrome);
+    updateSliderEffects(currentEffect);
   }
 
-  if (evt.target && evt.target.value === 'sepia') {
-    sliderElement.noUiSlider.updateOptions({
-      range: {
-        min: 0,
-        max: 1
-      },
-      start: 1,
-      step: 0.1
-    });
-    sliderElement.noUiSlider.on('update', () => {
-      effectLevelValue.value = sliderElement.noUiSlider.get();
-      picturePreview.style.filter = `sepia(${effectLevelValue.value})`;
-      picturePreview.classList.add('effects__preview--sepia');
-      sliderContainer.style.display = 'block';
-    });
+  if (currentEffect === 'sepia') {
+    updateSliderOptions(effects.sepia);
+    updateSliderEffects(currentEffect);
   }
 
-  if (evt.target && evt.target.value === 'marvin') {
-    sliderElement.noUiSlider.updateOptions({
-      range: {
-        min: 0,
-        max: 100,
-      },
-      start: 100,
-      step: 1,
-    });
-    sliderElement.noUiSlider.on('update', () => {
-      effectLevelValue.value = sliderElement.noUiSlider.get();
-      picturePreview.style.filter = `invert(${effectLevelValue.value}%)`;
-      picturePreview.classList.add('effects__preview--marvin');
-      sliderContainer.style.display = 'block';
-    });
+  if (currentEffect === 'marvin') {
+    updateSliderOptions(effects.marvin);
+    updateSliderEffects(currentEffect);
   }
 
-  if (evt.target && evt.target.value === 'phobos') {
-    sliderElement.noUiSlider.updateOptions({
-      range: {
-        min: 0,
-        max: 3,
-      },
-      start: 3,
-      step: 0.1,
-    });
-    sliderElement.noUiSlider.on('update', () => {
-      effectLevelValue.value = sliderElement.noUiSlider.get();
-      picturePreview.style.filter = `blur(${effectLevelValue.value}px)`;
-      picturePreview.classList.add('effects__preview--phobos');
-      sliderContainer.style.display = 'block';
-    });
+  if (currentEffect === 'phobos') {
+    updateSliderOptions(effects.phobos);
+    updateSliderEffects(currentEffect);
   }
 
-  if (evt.target && evt.target.value === 'heat') {
-    sliderElement.noUiSlider.updateOptions({
-      range: {
-        min: 1,
-        max: 3,
-      },
-      start: 3,
-      step: 0.1,
-    });
-    sliderElement.noUiSlider.on('update', () => {
-      effectLevelValue.value = sliderElement.noUiSlider.get();
-      picturePreview.style.filter = `brightness(${effectLevelValue.value})`;
-      picturePreview.classList.add('effects__preview--heat');
-      sliderContainer.style.display = 'block';
-    });
+  if (currentEffect === 'heat') {
+    updateSliderOptions(effects.heat);
+    updateSliderEffects(currentEffect);
   }
 });
 
