@@ -36,6 +36,14 @@ const closeFullScreenPicture = () => {
   documentBody.classList.remove('modal-open');
 };
 
+const onOutsideClick = (evt) => {
+  if (evt.target.className === 'big-picture overlay') {
+    closeFullScreenPicture();
+
+    documentBody.removeEventListener('click', onOutsideClick);
+  }
+};
+
 const onEscKeyDown = (evt) => {
   if (escKey(evt)) {
     closeFullScreenPicture();
@@ -91,7 +99,6 @@ const onLoadMoreCommentsClick = () => {
   }
 };
 
-
 const fullScreenMode = (picture) => {
   fullScreenPicture.src = picture.url;
   likesCount.textContent = picture.likes;
@@ -118,6 +125,7 @@ const fullScreenMode = (picture) => {
 
   fullScreenClose.addEventListener('click', onCloseClick);
   documentBody.addEventListener('keydown', onEscKeyDown);
+  documentBody.addEventListener('click', onOutsideClick);
 };
 
 export { fullScreenMode };

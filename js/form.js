@@ -1,6 +1,8 @@
 import { escKey } from './util.js';
 import './validation.js';
 
+import { resetScaleModifier } from './scale.js';
+import { resetEffectSettings } from './nouislider.js';
 
 const documentBody = document.querySelector('body');
 
@@ -15,8 +17,15 @@ const closeForm = () => {
   uploadInput.value = '';
 };
 
+const onOutsideClick = (evt) => {
+  if (evt.target.className === 'img-upload__overlay') {
+    closeForm();
+  }
+};
+
 const onCloseFormButton = () => {
   closeForm();
+  resetScaleModifier();
 };
 
 const onEscKeyDown = (evt) => {
@@ -25,7 +34,6 @@ const onEscKeyDown = (evt) => {
     && !evt.target.classList.contains('text__description')) {
 
     closeForm();
-
     documentBody.removeEventListener('keydown', onEscKeyDown);
   }
 };
@@ -37,6 +45,9 @@ const onUploadFileClick = () => {
   closeFormButton.addEventListener('click', onCloseFormButton);
 
   documentBody.addEventListener('keydown', onEscKeyDown);
+  resetEffectSettings();
+
+  documentBody.addEventListener('click', onOutsideClick);
 };
 
 uploadInput.addEventListener('change', onUploadFileClick);
