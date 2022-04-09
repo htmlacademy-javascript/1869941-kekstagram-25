@@ -34,6 +34,7 @@ const onScaleBiggerButtonClick = () => {
 };
 
 const resetScaleModifier = () => {
+  scaleValue.value = `${MAX_SCALE}%`;
   picturePreview.style.transform = '';
 };
 
