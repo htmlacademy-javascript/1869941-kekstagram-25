@@ -4,7 +4,9 @@ const URLS = {
 };
 
 const getData = (onSuccess) => {
-  fetch(URLS.GET)
+  fetch(
+    URLS.GET
+  )
     .then((response) => response.json())
     .then((pictures) => {
       onSuccess(pictures);
