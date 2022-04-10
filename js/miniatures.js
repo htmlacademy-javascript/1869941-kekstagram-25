@@ -1,5 +1,4 @@
 import { fullScreenMode } from './full-screen.js';
-import './form.js';
 
 const usersPictureContainer = document.querySelector('.pictures');
 const usersPictureTemplate = document.querySelector('#picture').content.querySelector('.picture');

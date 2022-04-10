@@ -1,4 +1,10 @@
-import { userPost } from './data.js';
 import { renderPictures } from './miniatures.js';
+import { setFormSubmit } from './validation.js';
+import { closeForm } from './form.js';
+import { getData } from './api.js';
 
-renderPictures(userPost);
+getData((pictures) => {
+  renderPictures(pictures);
+});
+
+setFormSubmit(closeForm);

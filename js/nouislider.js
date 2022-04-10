@@ -93,9 +93,8 @@ const updateSliderEffects = (filters) => {
 };
 
 const resetEffectSettings = () => {
-  picturePreview.classList = '';
   picturePreview.style.filter = '';
-
+  picturePreview.classList = '';
   sliderContainer.style.display = 'none';
 };
 
