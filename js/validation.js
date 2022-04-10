@@ -85,8 +85,7 @@ const setFormSubmit = (onSuccess) => {
   formUpload.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
-    const isValid = pristine.validate();
-    if (isValid) {
+    if (pristine.validate()) {
       sendData(
         () => {
           onSuccess();
