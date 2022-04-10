@@ -1,9 +1,9 @@
 import { renderPictures } from './miniatures.js';
 import { setFormSubmit } from './validation.js';
 import { closeForm } from './form.js';
-import { getDate } from './api.js';
+import { getData } from './api.js';
 
-getDate((pictures) => {
+getData((pictures) => {
   renderPictures(pictures);
 });
 

@@ -1,4 +1,4 @@
-const getDate = (onSuccess) => {
+const getData = (onSuccess) => {
   fetch('https://25.javascript.pages.academy/kekstagram/data')
     .then((response) => response.json())
     .then((pictures) => {
@@ -6,7 +6,7 @@ const getDate = (onSuccess) => {
     });
 };
 
-const sendDate = (onSuccess, onFail, body) => {
+const sendData = (onSuccess, onFail, body) => {
   fetch(
     'https://25.javascript.pages.academy/kekstagram',
     {
@@ -17,8 +17,6 @@ const sendDate = (onSuccess, onFail, body) => {
     .then((response) => {
       if (response.ok) {
         onSuccess();
-      } else {
-        onFail('Не удалось отправить форму, попробуйте ещё раз');
       }
     })
     .catch((err) => {
@@ -26,4 +24,5 @@ const sendDate = (onSuccess, onFail, body) => {
     });
 };
 
-export { getDate, sendDate };
+
+export { getData, sendData };

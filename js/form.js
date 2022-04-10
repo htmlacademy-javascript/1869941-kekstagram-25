@@ -4,12 +4,11 @@ import { resetEffectSettings } from './nouislider.js';
 
 const documentBody = document.querySelector('body');
 
+const formUpload = documentBody.querySelector('.img-upload__form');
+
 const uploadInput = documentBody.querySelector('.img-upload__input');
 const uploadOverlay = documentBody.querySelector('.img-upload__overlay');
 const closeFormButton = documentBody.querySelector('.img-upload__cancel');
-
-const inputHashtag = documentBody.querySelector('.text__hashtags');
-const inputComment = documentBody.querySelector('.text__description');
 
 const errorTemplate = documentBody.querySelector('#error').content.querySelector('.error');
 const errorCloseButton = errorTemplate.querySelector('.error__button');
@@ -17,17 +16,11 @@ const errorCloseButton = errorTemplate.querySelector('.error__button');
 const successTemplate = documentBody.querySelector('#success').content.querySelector('.success');
 const successCloseButton = successTemplate.querySelector('.success__button');
 
-const resetForm = () => {
-  inputHashtag.value = '';
-  inputComment.value = '';
-  uploadInput.value = '';
-};
-
 const closeForm = () => {
   uploadOverlay.classList.add('hidden');
   documentBody.classList.remove('modal-open');
 
-  resetForm();
+  formUpload.reset();
   resetScaleModifier();
   resetEffectSettings();
 };
@@ -100,6 +93,8 @@ const successAlert = () => {
 const onUploadFileClick = () => {
   uploadOverlay.classList.remove('hidden');
   documentBody.classList.add('modal-open');
+
+  resetEffectSettings();
 
   closeFormButton.addEventListener('click', onCloseFormButton);
   documentBody.addEventListener('keydown', onEscKeyDown);

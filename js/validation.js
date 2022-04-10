@@ -1,5 +1,5 @@
 import { errorAlert, successAlert } from './form.js';
-import { sendDate } from './api.js';
+import { sendData } from './api.js';
 
 const MAX_SYMBOL = 20;
 const MAX_HASHTAGS_AMOUNT = 5;
@@ -87,7 +87,7 @@ const setFormSubmit = (onSuccess) => {
 
     const isValid = pristine.validate();
     if (isValid) {
-      sendDate(
+      sendData(
         () => {
           onSuccess();
           successAlert();
