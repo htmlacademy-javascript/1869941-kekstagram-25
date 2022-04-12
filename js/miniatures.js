@@ -5,6 +5,7 @@ const usersPictureTemplate = document.querySelector('#picture').content.querySel
 
 const pictureFragment = document.createDocumentFragment();
 
+
 const renderPicture = (picture) => {
   const pictureElement = usersPictureTemplate.cloneNode(true);
 
@@ -16,11 +17,11 @@ const renderPicture = (picture) => {
     evt.preventDefault();
 
     fullScreenMode(picture);
-
   });
 
   return pictureElement;
 };
+
 
 const renderPictures = (pictures) => {
   pictures.forEach((picture) => {
@@ -29,5 +30,6 @@ const renderPictures = (pictures) => {
 
   usersPictureContainer.append(pictureFragment);
 };
+
 
 export { renderPictures };

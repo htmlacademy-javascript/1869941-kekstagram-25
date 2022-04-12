@@ -9,9 +9,11 @@ const SCALE_STEP = 25;
 
 const currontValue = (string) => parseFloat(string.value);
 
+
 const scaleChange = () => {
   picturePreview.style.transform = `scale(${currontValue(scaleValue) / 100})`;
 };
+
 
 const onScaleSmallerButtonClick = () => {
   if (currontValue(scaleValue) === MIN_SCALE) {
@@ -23,6 +25,7 @@ const onScaleSmallerButtonClick = () => {
   scaleChange();
 };
 
+
 const onScaleBiggerButtonClick = () => {
   if (currontValue(scaleValue) === MAX_SCALE) {
     return false;
@@ -33,10 +36,12 @@ const onScaleBiggerButtonClick = () => {
   scaleChange();
 };
 
+
 const resetScaleModifier = () => {
   scaleValue.value = `${MAX_SCALE}%`;
   picturePreview.style.transform = '';
 };
+
 
 scaleSmaller.addEventListener('click', onScaleSmallerButtonClick);
 scaleBigger.addEventListener('click', onScaleBiggerButtonClick);

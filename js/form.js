@@ -6,15 +6,16 @@ const documentBody = document.querySelector('body');
 
 const formUpload = documentBody.querySelector('.img-upload__form');
 
-const uploadInput = documentBody.querySelector('.img-upload__input');
-const uploadOverlay = documentBody.querySelector('.img-upload__overlay');
-const closeFormButton = documentBody.querySelector('.img-upload__cancel');
+const uploadInput = formUpload.querySelector('.img-upload__input');
+const uploadOverlay = formUpload.querySelector('.img-upload__overlay');
+const closeFormButton = formUpload.querySelector('.img-upload__cancel');
 
 const errorTemplate = documentBody.querySelector('#error').content.querySelector('.error');
 const errorCloseButton = errorTemplate.querySelector('.error__button');
 
 const successTemplate = documentBody.querySelector('#success').content.querySelector('.success');
 const successCloseButton = successTemplate.querySelector('.success__button');
+
 
 const closeForm = () => {
   uploadOverlay.classList.add('hidden');
@@ -25,6 +26,7 @@ const closeForm = () => {
   resetEffectSettings();
 };
 
+
 const onOutsideClick = (evt) => {
   if (evt.target.className === 'img-upload__overlay') {
     closeForm();
@@ -32,6 +34,7 @@ const onOutsideClick = (evt) => {
     documentBody.removeEventListener('click', onOutsideClick);
   }
 };
+
 
 const onOutsideSuccessAlartClick = (evt) => {
   if (evt.target.className !== 'success__inner') {
@@ -42,6 +45,7 @@ const onOutsideSuccessAlartClick = (evt) => {
   }
 };
 
+
 const onOutsideErrorAlartClick = (evt) => {
   if (evt.target.className !== 'error__inner') {
     errorTemplate.remove();
@@ -50,9 +54,11 @@ const onOutsideErrorAlartClick = (evt) => {
   }
 };
 
+
 const onCloseFormButton = () => {
   closeForm();
 };
+
 
 const onEscKeyDown = (evt) => {
   if (escKey(evt)
@@ -65,9 +71,11 @@ const onEscKeyDown = (evt) => {
   }
 };
 
+
 const onErrorCloseButton = () => {
   errorTemplate.remove();
 };
+
 
 const errorAlert = () => {
   documentBody.append(errorTemplate);
@@ -78,10 +86,12 @@ const errorAlert = () => {
   documentBody.addEventListener('click', onOutsideErrorAlartClick);
 };
 
+
 const onSuccessCloseButtonClick = () => {
   successTemplate.remove();
   closeForm();
 };
+
 
 const successAlert = () => {
   documentBody.append(successTemplate);
@@ -89,6 +99,7 @@ const successAlert = () => {
   successCloseButton.addEventListener('click', onSuccessCloseButtonClick);
   documentBody.addEventListener('click', onOutsideSuccessAlartClick);
 };
+
 
 const onUploadFileClick = () => {
   uploadOverlay.classList.remove('hidden');
@@ -100,6 +111,7 @@ const onUploadFileClick = () => {
   documentBody.addEventListener('keydown', onEscKeyDown);
   documentBody.addEventListener('click', onOutsideClick);
 };
+
 
 uploadInput.addEventListener('change', onUploadFileClick);
 

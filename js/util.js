@@ -8,7 +8,9 @@ const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
+
 const checkStringLength = (string, length) => string <= length;
+
 
 const numDecline = (num, nominative, genitiveSingular, genitivePlural) => {
   num = num % 100;
@@ -25,6 +27,18 @@ const numDecline = (num, nominative, genitiveSingular, genitivePlural) => {
   return genitivePlural;
 };
 
+
 const escKey = (evt) => evt.key === 'Escape';
 
-export { getRandomNumber, checkStringLength, escKey, numDecline };
+
+const debounce = (callback, timeoutDelay = 500) => {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export { getRandomNumber, checkStringLength, escKey, numDecline, debounce };
