@@ -1,15 +1,29 @@
 import { renderPictures } from './miniatures.js';
-import { setFormSubmit } from './validation.js';
-import { closeForm } from './form.js';
+import { closeForm, setFormSubmit } from './form.js';
 import { getData } from './api.js';
-import { showFilters } from './filters.js';
+import { setFilterClick, filterByDefault, filterByRandom, filterByComments } from './filters.js';
+import { debounce } from './util.js';
 import './upload-picture.js';
 
+const RENDER_DELAY = 500;
 
 getData((pictures) => {
   renderPictures(pictures);
-  showFilters();
-});
 
+  setFilterClick(debounce(
+    () => renderPictures(filterByDefault(pictures)),
+    RENDER_DELAY,
+  ));
+
+  setFilterClick(debounce(
+    () => renderPictures(filterByRandom(pictures)),
+    RENDER_DELAY,
+  ));
+
+  setFilterClick(debounce(
+    () => renderPictures(filterByComments(pictures)),
+    RENDER_DELAY,
+  ));
+});
 
 setFormSubmit(closeForm);

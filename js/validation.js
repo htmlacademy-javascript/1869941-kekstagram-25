@@ -1,6 +1,3 @@
-import { errorAlert, successAlert } from './form.js';
-import { sendData } from './api.js';
-
 const MAX_SYMBOL = 20;
 const MAX_HASHTAGS_AMOUNT = 5;
 
@@ -82,27 +79,8 @@ const onHashtagsInput = () => {
 };
 
 
-const setFormSubmit = (onSuccess) => {
-  formUpload.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-
-    if (pristine.validate()) {
-      sendData(
-        () => {
-          onSuccess();
-          successAlert();
-        },
-        () => {
-          errorAlert();
-        },
-        new FormData(evt.target));
-    }
-  });
-};
-
-
 inputHashtag.addEventListener('input', onHashtagsInput);
 
 pristine.addValidator(inputHashtag, hashtagsHandler, error, 2, false);
 
-export { setFormSubmit };
+export { pristine };

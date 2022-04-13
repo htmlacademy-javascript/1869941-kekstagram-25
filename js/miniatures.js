@@ -28,6 +28,8 @@ const renderPictures = (pictures) => {
     pictureFragment.append(renderPicture(picture));
   });
 
+  document.querySelectorAll('.picture').forEach((picture) => picture.remove());
+
   usersPictureContainer.append(pictureFragment);
 };
 
