@@ -31,7 +31,7 @@ const numDecline = (num, nominative, genitiveSingular, genitivePlural) => {
 const escKey = (evt) => evt.key === 'Escape';
 
 
-const debounce = (callback, timeoutDelay = 500) => {
+const debounce = (callback, timeoutDelay) => {
   let timeoutId;
 
   return (...rest) => {
@@ -41,4 +41,14 @@ const debounce = (callback, timeoutDelay = 500) => {
   };
 };
 
-export { getRandomNumber, checkStringLength, escKey, numDecline, debounce };
+
+const shufleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+
+
+export { getRandomNumber, checkStringLength, escKey, numDecline, debounce, shufleArray };
