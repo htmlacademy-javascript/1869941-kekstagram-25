@@ -9,14 +9,17 @@ let errorMessage = '';
 const error = () => errorMessage;
 
 
-const pristine = new Pristine(formUpload, {
-  classTo: 'img-upload__item',
-  errorClass: 'img-upload__item--invalid',
-  successClass: 'img-upload__item--valid',
-  errorTextParent: 'img-upload__item',
-  errorTextTag: 'div',
-  errorTextClass: 'img-upload__error',
-});
+const newPristine = () => {
+  const pristine = new Pristine(formUpload, {
+    classTo: 'img-upload__item',
+    errorClass: 'img-upload__item--invalid',
+    successClass: 'img-upload__item--valid',
+    errorTextParent: 'img-upload__item',
+    errorTextTag: 'div',
+    errorTextClass: 'img-upload__error',
+  });
+  return pristine;
+};
 
 
 const hashtagsHandler = (value) => {
@@ -75,12 +78,12 @@ const hashtagsHandler = (value) => {
 
 
 const onHashtagsInput = () => {
-  pristine.validate();
+  newPristine().validate();
 };
 
 
 inputHashtag.addEventListener('input', onHashtagsInput);
 
-pristine.addValidator(inputHashtag, hashtagsHandler, error, 2, false);
+newPristine().addValidator(inputHashtag, hashtagsHandler, error, 2, false);
 
-export { pristine };
+export { newPristine };

@@ -1,7 +1,7 @@
 import { escKey } from './util.js';
 import { resetScaleModifier } from './scale.js';
 import { resetEffectSettings } from './nouislider.js';
-import { pristine } from './validation.js';
+import { newPristine } from './validation.js';
 import { sendData } from './api.js';
 
 const documentBody = document.querySelector('body');
@@ -126,7 +126,7 @@ const setFormSubmit = (onSuccess) => {
   formUpload.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
-    if (pristine.validate()) {
+    if (newPristine().validate()) {
       blockSubmitButton();
       sendData(
         () => {
