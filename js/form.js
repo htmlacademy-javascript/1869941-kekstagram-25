@@ -1,24 +1,22 @@
 import { escKey } from './util.js';
 import { resetScaleModifier } from './scale.js';
 import { resetEffectSettings } from './nouislider.js';
-import { newPristine } from './validation.js';
+import { pristine } from './validation.js';
 import { sendData } from './api.js';
 
 const documentBody = document.querySelector('body');
 
 const formUpload = documentBody.querySelector('.img-upload__form');
-
 const uploadInput = formUpload.querySelector('.img-upload__input');
 const uploadOverlay = formUpload.querySelector('.img-upload__overlay');
 const closeFormButton = formUpload.querySelector('.img-upload__cancel');
+const submitButton = formUpload.querySelector('.img-upload__submit');
 
 const errorTemplate = documentBody.querySelector('#error').content.querySelector('.error');
 const errorCloseButton = errorTemplate.querySelector('.error__button');
 
 const successTemplate = documentBody.querySelector('#success').content.querySelector('.success');
 const successCloseButton = successTemplate.querySelector('.success__button');
-
-const submitButton = formUpload.querySelector('.img-upload__submit');
 
 
 const closeForm = () => {
@@ -104,6 +102,7 @@ const successAlert = () => {
   documentBody.addEventListener('click', onOutsideSuccessAlartClick);
 };
 
+
 const blockSubmitButton = () => {
   submitButton.disabled = true;
   submitButton.textContent = 'Сохраняю...';
@@ -126,7 +125,7 @@ const setFormSubmit = (onSuccess) => {
   formUpload.addEventListener('submit', (evt) => {
     evt.preventDefault();
 
-    if (newPristine().validate()) {
+    if (pristine.validate()) {
       blockSubmitButton();
       sendData(
         () => {

@@ -101,35 +101,14 @@ const resetEffectSettings = () => {
   sliderContainer.style.display = 'none';
 };
 
+
 effectsList.addEventListener('change', (evt) => {
   const currentEffect = evt.target.value;
 
   if (currentEffect === 'none') {
     resetEffectSettings();
-  }
-
-  if (currentEffect === 'chrome') {
-    updateSliderOptions(Effect.chrome);
-    updateSliderEffects(currentEffect);
-  }
-
-  if (currentEffect === 'sepia') {
-    updateSliderOptions(Effect.sepia);
-    updateSliderEffects(currentEffect);
-  }
-
-  if (currentEffect === 'marvin') {
-    updateSliderOptions(Effect.marvin);
-    updateSliderEffects(currentEffect);
-  }
-
-  if (currentEffect === 'phobos') {
-    updateSliderOptions(Effect.phobos);
-    updateSliderEffects(currentEffect);
-  }
-
-  if (currentEffect === 'heat') {
-    updateSliderOptions(Effect.heat);
+  } else {
+    updateSliderOptions(Effect[currentEffect]);
     updateSliderEffects(currentEffect);
   }
 });

@@ -23,12 +23,20 @@ const renderPicture = (picture) => {
 };
 
 
+const removePictures = () => {
+  const pictures = document.querySelectorAll('.picture');
+  if (pictures) {
+    pictures.forEach((picture) => picture.remove());
+  }
+};
+
+
 const renderPictures = (pictures) => {
+  removePictures();
+
   pictures.forEach((picture) => {
     pictureFragment.append(renderPicture(picture));
   });
-
-  document.querySelectorAll('.picture').forEach((picture) => picture.remove());
 
   usersPictureContainer.append(pictureFragment);
 };
