@@ -1,15 +1,3 @@
-const getRandomNumber = (min, max) => {
-  if (min < 0 || max < 0) {
-    return -1;
-  }
-  if (min > max) {
-    [min, max] = [max, min];
-  }
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-
-const checkStringLength = (string, length) => string <= length;
-
 const numDecline = (num, nominative, genitiveSingular, genitivePlural) => {
   num = num % 100;
   const num1 = num % 10;
@@ -25,6 +13,28 @@ const numDecline = (num, nominative, genitiveSingular, genitivePlural) => {
   return genitivePlural;
 };
 
+
 const escKey = (evt) => evt.key === 'Escape';
 
-export { getRandomNumber, checkStringLength, escKey, numDecline };
+
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+
+  return (...rest) => {
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+
+const shuffleArray = (array) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};
+
+
+export { escKey, numDecline, debounce, shuffleArray };

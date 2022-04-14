@@ -1,10 +1,13 @@
-import { errorAlert, successAlert } from './form.js';
-import { sendData } from './api.js';
-
 const MAX_SYMBOL = 20;
 const MAX_HASHTAGS_AMOUNT = 5;
 
 const formUpload = document.querySelector('.img-upload__form');
+
+const inputHashtag = formUpload.querySelector('.text__hashtags');
+
+let errorMessage = '';
+const error = () => errorMessage;
+
 
 const pristine = new Pristine(formUpload, {
   classTo: 'img-upload__item',
@@ -15,11 +18,6 @@ const pristine = new Pristine(formUpload, {
   errorTextClass: 'img-upload__error',
 });
 
-const inputHashtag = formUpload.querySelector('.text__hashtags');
-
-let errorMessage = '';
-
-const error = () => errorMessage;
 
 const hashtagsHandler = (value) => {
   errorMessage = '';
@@ -75,30 +73,14 @@ const hashtagsHandler = (value) => {
   });
 };
 
-pristine.addValidator(inputHashtag, hashtagsHandler, error, 2, false);
 
 const onHashtagsInput = () => {
   pristine.validate();
 };
 
-const setFormSubmit = (onSuccess) => {
-  formUpload.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-
-    if (pristine.validate()) {
-      sendData(
-        () => {
-          onSuccess();
-          successAlert();
-        },
-        () => {
-          errorAlert();
-        },
-        new FormData(evt.target));
-    }
-  });
-};
 
 inputHashtag.addEventListener('input', onHashtagsInput);
 
-export { setFormSubmit };
+pristine.addValidator(inputHashtag, hashtagsHandler, error, 2, false);
+
+export { pristine };

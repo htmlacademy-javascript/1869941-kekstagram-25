@@ -14,7 +14,7 @@ noUiSlider.create(sliderElement, {
   connect: 'lower',
 });
 
-const effects = {
+const Effect = {
   'chrome': {
     RANGE: {
       MIN: 0,
@@ -72,6 +72,7 @@ const effects = {
   },
 };
 
+
 const updateSliderOptions = ({ RANGE: { MIN, MAX }, START, STEP }) => {
   sliderElement.noUiSlider.updateOptions({
     range: {
@@ -83,14 +84,16 @@ const updateSliderOptions = ({ RANGE: { MIN, MAX }, START, STEP }) => {
   });
 };
 
+
 const updateSliderEffects = (filters) => {
   sliderElement.noUiSlider.on('update', () => {
     effectLevelValue.value = sliderElement.noUiSlider.get();
-    picturePreview.style.filter = `${effects[filters].EFFECT}(${effectLevelValue.value}${effects[filters].UNIT})`;
+    picturePreview.style.filter = `${Effect[filters].EFFECT}(${effectLevelValue.value}${Effect[filters].UNIT})`;
     picturePreview.classList.add(`effects__preview--${filters}`);
-    sliderContainer.style.display = `${effects[filters].DISPLAY}`;
+    sliderContainer.style.display = `${Effect[filters].DISPLAY}`;
   });
 };
+
 
 const resetEffectSettings = () => {
   picturePreview.style.filter = '';
@@ -98,37 +101,17 @@ const resetEffectSettings = () => {
   sliderContainer.style.display = 'none';
 };
 
+
 effectsList.addEventListener('change', (evt) => {
   const currentEffect = evt.target.value;
 
   if (currentEffect === 'none') {
     resetEffectSettings();
-  }
-
-  if (currentEffect === 'chrome') {
-    updateSliderOptions(effects.chrome);
-    updateSliderEffects(currentEffect);
-  }
-
-  if (currentEffect === 'sepia') {
-    updateSliderOptions(effects.sepia);
-    updateSliderEffects(currentEffect);
-  }
-
-  if (currentEffect === 'marvin') {
-    updateSliderOptions(effects.marvin);
-    updateSliderEffects(currentEffect);
-  }
-
-  if (currentEffect === 'phobos') {
-    updateSliderOptions(effects.phobos);
-    updateSliderEffects(currentEffect);
-  }
-
-  if (currentEffect === 'heat') {
-    updateSliderOptions(effects.heat);
+  } else {
+    updateSliderOptions(Effect[currentEffect]);
     updateSliderEffects(currentEffect);
   }
 });
+
 
 export { resetEffectSettings };

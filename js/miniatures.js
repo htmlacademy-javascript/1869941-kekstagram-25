@@ -5,6 +5,7 @@ const usersPictureTemplate = document.querySelector('#picture').content.querySel
 
 const pictureFragment = document.createDocumentFragment();
 
+
 const renderPicture = (picture) => {
   const pictureElement = usersPictureTemplate.cloneNode(true);
 
@@ -16,18 +17,29 @@ const renderPicture = (picture) => {
     evt.preventDefault();
 
     fullScreenMode(picture);
-
   });
 
   return pictureElement;
 };
 
+
+const removePictures = () => {
+  const pictures = document.querySelectorAll('.picture');
+  if (pictures) {
+    pictures.forEach((picture) => picture.remove());
+  }
+};
+
+
 const renderPictures = (pictures) => {
+  removePictures();
+
   pictures.forEach((picture) => {
     pictureFragment.append(renderPicture(picture));
   });
 
   usersPictureContainer.append(pictureFragment);
 };
+
 
 export { renderPictures };

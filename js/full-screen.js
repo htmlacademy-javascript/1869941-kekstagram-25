@@ -14,16 +14,14 @@ const fullScreenClose = fullScreenOpen.querySelector('.big-picture__cancel');
 const likesCount = documentBody.querySelector('.likes-count');
 
 const pictureDescription = documentBody.querySelector('.social__caption');
-
 const loadMoreButton = documentBody.querySelector('.social__comments-loader');
-
 const commentsCounter = documentBody.querySelector('.social__comment-count');
-
 const usersCommentContainer = documentBody.querySelector('.social__comments');
 const usersCommentTemplate = documentBody.querySelector('#social-comment')
   .content.querySelector('.social__comment');
 
 const commentFragment = document.createDocumentFragment();
+
 
 const removeComments = () => {
   documentBody.querySelectorAll('.social__comment').forEach((elem) => {
@@ -31,10 +29,12 @@ const removeComments = () => {
   });
 };
 
+
 const closeFullScreenPicture = () => {
   fullScreenOpen.classList.add('hidden');
   documentBody.classList.remove('modal-open');
 };
+
 
 const onOutsideClick = (evt) => {
   if (evt.target.className === 'big-picture overlay') {
@@ -44,6 +44,7 @@ const onOutsideClick = (evt) => {
   }
 };
 
+
 const onEscKeyDown = (evt) => {
   if (escKey(evt)) {
     closeFullScreenPicture();
@@ -52,12 +53,14 @@ const onEscKeyDown = (evt) => {
   }
 };
 
+
 const onCloseClick = () => {
   closeFullScreenPicture();
 
   fullScreenClose.removeEventListener('click', onCloseClick);
   documentBody.removeEventListener('keydown', onEscKeyDown);
 };
+
 
 const createComment = (comment) => {
   const commentElement = usersCommentTemplate.cloneNode(true);
@@ -68,6 +71,7 @@ const createComment = (comment) => {
 
   return commentElement;
 };
+
 
 const createComments = (dataComments) => {
   removeComments();
@@ -86,6 +90,7 @@ const createComments = (dataComments) => {
   commentsCounter.textContent = `${currentCount} из ${comments.length} ${numDecline(comments.length, 'комментария', 'комментариев', 'комментариев')}`;
 };
 
+
 const onLoadMoreCommentsClick = () => {
   currentCount += COMMENTS_COUNT;
 
@@ -98,6 +103,7 @@ const onLoadMoreCommentsClick = () => {
     loadMoreButton.removeEventListener('click', onLoadMoreCommentsClick);
   }
 };
+
 
 const fullScreenMode = (picture) => {
   fullScreenPicture.src = picture.url;
@@ -127,5 +133,6 @@ const fullScreenMode = (picture) => {
   documentBody.addEventListener('keydown', onEscKeyDown);
   documentBody.addEventListener('click', onOutsideClick);
 };
+
 
 export { fullScreenMode };
