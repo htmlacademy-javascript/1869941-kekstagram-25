@@ -3,7 +3,7 @@ const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
 const fileChooser = document.querySelector('.img-upload__input');
 const preview = document.querySelector('.img-upload__preview img');
 
-const previewEffect = document.querySelectorAll('.effects__preview');
+const previewEffects = document.querySelectorAll('.effects__preview');
 
 
 fileChooser.addEventListener('change', () => {
@@ -14,7 +14,7 @@ fileChooser.addEventListener('change', () => {
 
   if (matches) {
     preview.src = URL.createObjectURL(file);
-    previewEffect.forEach((effects) => {
+    previewEffects.forEach((effects) => {
       effects.style.backgroundImage = `url('${(URL.createObjectURL(file))}')`;
     });
   }
