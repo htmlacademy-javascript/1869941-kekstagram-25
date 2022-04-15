@@ -7,31 +7,31 @@ const MIN_SCALE = 25;
 const MAX_SCALE = 100;
 const SCALE_STEP = 25;
 
-const currontValue = (string) => parseFloat(string.value);
+const getCurrentValue = (string) => parseFloat(string.value);
 
 
 const scaleChange = () => {
-  picturePreview.style.transform = `scale(${currontValue(scaleValue) / 100})`;
+  picturePreview.style.transform = `scale(${getCurrentValue(scaleValue) / 100})`;
 };
 
 
 const onScaleSmallerButtonClick = () => {
-  if (currontValue(scaleValue) === MIN_SCALE) {
+  if (getCurrentValue(scaleValue) === MIN_SCALE) {
     return false;
   }
 
-  scaleValue.value = `${currontValue(scaleValue) - SCALE_STEP}%`;
+  scaleValue.value = `${getCurrentValue(scaleValue) - SCALE_STEP}%`;
 
   scaleChange();
 };
 
 
 const onScaleBiggerButtonClick = () => {
-  if (currontValue(scaleValue) === MAX_SCALE) {
+  if (getCurrentValue(scaleValue) === MAX_SCALE) {
     return false;
   }
 
-  scaleValue.value = `${currontValue(scaleValue) + SCALE_STEP}%`;
+  scaleValue.value = `${getCurrentValue(scaleValue) + SCALE_STEP}%`;
 
   scaleChange();
 };

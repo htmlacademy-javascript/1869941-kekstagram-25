@@ -6,7 +6,7 @@ const formUpload = document.querySelector('.img-upload__form');
 const inputHashtag = formUpload.querySelector('.text__hashtags');
 
 let errorMessage = '';
-const error = () => errorMessage;
+const onError = () => errorMessage;
 
 
 const pristine = new Pristine(formUpload, {
@@ -81,6 +81,6 @@ const onHashtagsInput = () => {
 
 inputHashtag.addEventListener('input', onHashtagsInput);
 
-pristine.addValidator(inputHashtag, hashtagsHandler, error, 2, false);
+pristine.addValidator(inputHashtag, hashtagsHandler, onError, 2, false);
 
 export { pristine };

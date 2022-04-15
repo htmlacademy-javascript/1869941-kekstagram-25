@@ -29,18 +29,11 @@ const closeForm = () => {
 };
 
 
-const onOutsideClick = (evt) => {
-  if (evt.target.className === 'img-upload__overlay') {
-    closeForm();
-
-    documentBody.removeEventListener('click', onOutsideClick);
-  }
-};
-
-
 const onOutsideSuccessAlartClick = (evt) => {
   if (evt.target.className !== 'success__inner') {
     successTemplate.remove();
+    submitButton.disabled = false;
+
     closeForm();
 
     documentBody.removeEventListener('click', onOutsideSuccessAlartClick);
@@ -51,6 +44,7 @@ const onOutsideSuccessAlartClick = (evt) => {
 const onOutsideErrorAlartClick = (evt) => {
   if (evt.target.className !== 'error__inner') {
     errorTemplate.remove();
+    submitButton.disabled = false;
 
     documentBody.removeEventListener('click', onOutsideErrorAlartClick);
   }
@@ -76,6 +70,7 @@ const onEscKeyDown = (evt) => {
 
 const onErrorCloseButton = () => {
   errorTemplate.remove();
+  submitButton.disabled = false;
 };
 
 
@@ -91,6 +86,8 @@ const errorAlert = () => {
 
 const onSuccessCloseButtonClick = () => {
   successTemplate.remove();
+  submitButton.disabled = false;
+
   closeForm();
 };
 
@@ -103,12 +100,6 @@ const successAlert = () => {
 };
 
 
-const blockSubmitButton = () => {
-  submitButton.disabled = true;
-  submitButton.textContent = 'Сохраняю...';
-};
-
-
 const onUploadFileClick = () => {
   uploadOverlay.classList.remove('hidden');
   documentBody.classList.add('modal-open');
@@ -117,7 +108,6 @@ const onUploadFileClick = () => {
 
   closeFormButton.addEventListener('click', onCloseFormButton);
   documentBody.addEventListener('keydown', onEscKeyDown);
-  documentBody.addEventListener('click', onOutsideClick);
 };
 
 
@@ -126,7 +116,7 @@ const setFormSubmit = (onSuccess) => {
     evt.preventDefault();
 
     if (pristine.validate()) {
-      blockSubmitButton();
+      submitButton.disabled = true;
       sendData(
         () => {
           onSuccess();
