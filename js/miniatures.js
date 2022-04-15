@@ -6,6 +6,25 @@ const usersPictureTemplate = document.querySelector('#picture').content.querySel
 const pictureFragment = document.createDocumentFragment();
 
 
+const errorAlert = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = 100;
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = 0;
+  alertContainer.style.top = 0;
+  alertContainer.style.right = 0;
+  alertContainer.style.padding = '15px 10px';
+  alertContainer.style.fontSize = '28px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.color = '#fce86d';
+  alertContainer.style.backgroundColor = '#3b3619';
+
+  alertContainer.textContent = message;
+
+  document.body.append(alertContainer);
+};
+
+
 const renderPicture = (picture) => {
   const pictureElement = usersPictureTemplate.cloneNode(true);
 
@@ -41,5 +60,4 @@ const renderPictures = (pictures) => {
   usersPictureContainer.append(pictureFragment);
 };
 
-
-export { renderPictures };
+export { renderPictures, errorAlert };

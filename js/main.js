@@ -1,4 +1,4 @@
-import { renderPictures } from './miniatures.js';
+import { renderPictures, errorAlert } from './miniatures.js';
 import { closeForm, setFormSubmit } from './form.js';
 import { getData } from './api.js';
 import { addFilters } from './filters.js';
@@ -9,11 +9,16 @@ let pictures = [];
 const getPictures = () => pictures;
 
 
-getData((data) => {
-  pictures = data.slice();
-  addFilters();
-  renderPictures(pictures);
-});
+getData(
+  (data) => {
+    pictures = data.slice();
+    addFilters();
+    renderPictures(pictures);
+  },
+  () => {
+    errorAlert('Что то пошло не так, перезагрузите страницу');
+  }
+);
 
 
 setFormSubmit(closeForm);

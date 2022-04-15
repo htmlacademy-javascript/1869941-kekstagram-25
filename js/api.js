@@ -4,13 +4,16 @@ const Url = {
 };
 
 
-const getData = (onSuccess) => {
+const getData = (onSuccess, onFail) => {
   fetch(
     Url.GET
   )
     .then((response) => response.json())
-    .then((pictures) => {
-      onSuccess(pictures);
+    .then((data) => {
+      onSuccess(data);
+    })
+    .catch((err) => {
+      onFail(err.message);
     });
 };
 
@@ -26,10 +29,12 @@ const sendData = (onSuccess, onFail, body) => {
     .then((response) => {
       if (response.ok) {
         onSuccess();
+      } else {
+        onFail();
       }
     })
-    .catch((err) => {
-      onFail(err.message);
+    .catch(() => {
+      onFail();
     });
 };
 

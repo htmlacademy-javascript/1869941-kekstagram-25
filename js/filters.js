@@ -17,26 +17,24 @@ const Filter = {
 const addFilters = () => {
   filterContainer.classList.remove('img-filters--inactive');
 
-  const onFilterClick = (evt) => {
+  const onFilterButtonClick = (evt) => {
     if (evt.target.classList.contains('img-filters__button')) {
-
-      const showSortPictures = debounce(() => {
-        renderPictures(Filter[evt.target.id]());
-      }, RENDER_DELAY);
-
       const selectedButton = document.querySelector('.img-filters__button--active');
 
       if (selectedButton) {
         selectedButton.classList.remove('img-filters__button--active');
       }
 
-      showSortPictures();
-
       evt.target.classList.add('img-filters__button--active');
     }
   };
 
-  filterContainer.addEventListener('click', onFilterClick);
+  const setFilter = debounce((evt) => {
+    renderPictures(Filter[evt.target.id]());
+  }, RENDER_DELAY);
+
+  filterContainer.addEventListener('click', onFilterButtonClick);
+  filterContainer.addEventListener('click', setFilter);
 };
 
 
